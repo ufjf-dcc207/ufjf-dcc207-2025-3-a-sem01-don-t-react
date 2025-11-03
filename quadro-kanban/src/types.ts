@@ -1,10 +1,10 @@
 // Esse arquivo irá centralizar as tipagens dos componentes do projeto
 
-export type Card = {
+export interface Card {
     id: string;
     title: string;
 };
 
-export type Columns = {
+export interface Columns {
     [key: string]: Card[];
 }
