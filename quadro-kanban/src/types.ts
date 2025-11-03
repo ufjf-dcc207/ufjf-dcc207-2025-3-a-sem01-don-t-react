@@ -1,0 +1,1 @@
+// Esse arquivo irá centralizar as tipagens dos componentes do projeto
