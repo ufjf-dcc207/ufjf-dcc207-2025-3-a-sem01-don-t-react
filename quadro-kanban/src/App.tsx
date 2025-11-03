@@ -1,35 +1,52 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import Column from "./components/Column";
+import type { Card, Columns } from "./types";
 
-function App() {
-  const [count, setCount] = useState(0)
+
+const App = () => {
+
+  const [columns, setColumns] = useState<Columns>({
+    "Backlog": [{id: "1", title: "Começando a ficar legal"}],
+    "Em Desenvolvimento": [],
+    "Em Revisão": [],
+    "Em Teste": [],
+    "Concluído": []
+  });
+
+  const handleDropCard = (cardId: string, newColumn: string) => {
+
+    let draggedCard: Card | null = null;
+
+    const updated: Columns = Object.fromEntries(
+      Object.entries(columns).map(([colName, cards]) => {
+        const filtered = cards.filter((c) => {
+          if (c.id === cardId) draggedCard = c;
+          return c.id !== cardId;
+        });
+        return [colName, filtered];
+      })
+    );
+
+    if (draggedCard) {
+      updated[newColumn] = [...(updated[newColumn] || []), draggedCard];
+      setColumns(updated);
+    }
+
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div className="board">
+      {Object.entries(columns).map(([colName, cards]) => (
+        <Column
+        key = {colName}
+        title = {colName}
+        cards = {cards}
+        onDropCard = {handleDropCard}
+        />
+      ))}
+    </div>
+  );
+  
+};
 
-export default App
+export default App;
