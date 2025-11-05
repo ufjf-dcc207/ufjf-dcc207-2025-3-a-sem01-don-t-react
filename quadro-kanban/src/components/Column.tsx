@@ -26,7 +26,7 @@ const Column = ({ title, cards, onDropCard, onRemoveCard }: ColumnProps) => {
           key={card.id}
           card={card}
           onDragStart={(e, id) => e.dataTransfer.setData("cardId", id)}
-          onRemove={() => onRemoveCard(title, card.id)} // 🔗 botão de remover
+          onRemove={() => onRemoveCard(title, card.id)} // botão de remover
         />
       ))}
     </div>

@@ -30,7 +30,7 @@ const App = () => {
     }
   };
 
-  // 🆕 nova função para remover card
+  // nova função para remover card
   const handleRemoveCard = (columnName: string, cardId: string) => {
     const updated: Columns = {
       ...columns,
@@ -47,7 +47,7 @@ const App = () => {
           title={colName}
           cards={cards}
           onDropCard={handleDropCard}
-          onRemoveCard={handleRemoveCard} // 🔗 passamos para as colunas
+          onRemoveCard={handleRemoveCard} //  passamos para as colunas
         />
       ))}
     </div>
