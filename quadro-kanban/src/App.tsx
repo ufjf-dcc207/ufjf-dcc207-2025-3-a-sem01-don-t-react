@@ -30,7 +30,7 @@ const App = () => {
     }
   };
 
-  // Função pra remover card
+  // Função pra adicionar card
   const handleAddCard = (title: string, columnName: string) => {
     const newCard: Card = {
       id: Math.random().toString(36).substring(2, 9),
