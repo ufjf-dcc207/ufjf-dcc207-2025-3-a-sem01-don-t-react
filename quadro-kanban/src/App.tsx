@@ -60,7 +60,7 @@ const App = () => {
           title={colName}
           cards={cards}
           onDropCard={handleDropCard}
-          onRemoveCard={handleRemoveCard} //  passamos para as colunas
+          onRemoveCard={handleRemoveCard}
           onAddCard={handleAddCard}
         />
       ))}
