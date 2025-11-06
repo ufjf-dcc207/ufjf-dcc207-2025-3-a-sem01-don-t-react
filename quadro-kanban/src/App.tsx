@@ -30,6 +30,19 @@ const App = () => {
     }
   };
 
+  // Função pra remover card
+  const handleAddCard = (title: string, columnName: string) => {
+    const newCard: Card = {
+      id: Math.random().toString(36).substring(2, 9),
+      title,
+    };
+    const updated = {
+      ...columns,
+      [columnName]: [...columns[columnName], newCard],
+    };
+    setColumns(updated);
+  }
+
   // nova função para remover card
   const handleRemoveCard = (columnName: string, cardId: string) => {
     const updated: Columns = {
@@ -48,6 +61,7 @@ const App = () => {
           cards={cards}
           onDropCard={handleDropCard}
           onRemoveCard={handleRemoveCard} //  passamos para as colunas
+          onAddCard={handleAddCard}
         />
       ))}
     </div>
